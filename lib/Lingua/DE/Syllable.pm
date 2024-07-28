@@ -11,7 +11,7 @@ use Unicode::Normalize;
 our @ISA    = qw/ Exporter /;
 our @EXPORT = qw/ syllable syllables /;
 
-our @VOWELS = qw( a e i o u y æ ø å );
+our @VOWELS = qw( a e i o u y ä ö ü é è ë ï );
 
 =encoding utf-8
 
@@ -81,7 +81,7 @@ sub syllables {
     }
 
     # Certain vowel combinations doesn't classify as "syllable separator".
-    foreach ( qw(ai au ay ei eu ey oi ou oy øi øu øy æi æu æy åi åu åy) ) {
+    foreach ( qw(aa ai au ay ee ei eu ey ie ui äu ) ) {
         my $occurences = $word =~ m/$_/g;
         $syllables -= $occurences;
     }
