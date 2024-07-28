@@ -5,34 +5,47 @@ use strict;
 use warnings FATAL => 'all';
 use utf8;
 
-use Test::More;
+use lib qw(
+../lib/
+./lib/
+);
 
-use Lingua::NO::Syllable;
+use Test::More;
+use Test::More::UTF8;
+
+use Lingua::DE::Syllable;
+
+# Vocal a,e,i,o,u,ä,ö,ü,y,é,è,ë,ï
+# Diphthong   ej,
+#   aa,ai,au,ay,ee,ei,eu,ey,ie,ui,äu,
+
+# Hiat Cha-os, Rotari-er, Radi-o, Bo-a, Ru-ine
+# Spray und Schwejk
+#  Ziesar Lienz  Dienten  Brienz  Spiez
 
 my %tests = (
-    'Bare'          => 2, # Ba-re
-    'Bavian'        => 3, # Bav-i-an
-    'Dokumentere'   => 5, # Dok-u-men-te-re
-    'Fiolin'        => 3, # Fi-o-lin
+    'paar' =>   1,
+    # klimaanlage 5
+    # rafael 3
+    # naiv 2 # naïve
+    # Citroën
+    # aquitanien 5
+    'Bahre'          => 2, # Bah-re
+    'Pavian'        => 3, # Pa-vi-an
+    'Dokumente'   => 4, # Do-ku-men-te
+    'Violine'        => 4, # Vi-o-li-ne
     'Helikopter'    => 4, # He-li-kop-ter
-    'Husk'          => 1, # Husk
-    'Idé'           => 2, # I-de (normalized)
+    'Café'           => 2,
     'Idè'           => 2, # I-de (normalized)
-    'Løyve'         => 2, # Løy-ve
-    'Øy'            => 1, # Øy
-    'Påstander'     => 3, # På-stand-er
+    'Mayer'         => 2, #
     'Restaurant'    => 3, # Rest-au-rant
-    'Saumfare'      => 3, # Saum-fa-re
-    'Soyabønner'    => 4, # So-ya-bønn-er
     'Tyrannosaurus' => 5, # Tyr-ann-o-sau-rus
-    'Veikro'        => 2, # Vei-kro
-    'Å'             => 1, # Å
 );
 
 plan tests => scalar( keys %tests );
 
-foreach ( keys %tests ) {
-    is( syllables($_), $tests{$_}, "'" . $_ . "' passed!" );
+for ( keys %tests ) {
+    is( syllables($_), $tests{$_}, "'" . $_ . "'" . ': ' . $tests{$_} );
 }
 
 done_testing;
