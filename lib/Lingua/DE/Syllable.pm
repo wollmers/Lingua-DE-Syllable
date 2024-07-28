@@ -1,4 +1,4 @@
-package Lingua::NO::Syllable;
+package Lingua::DE::Syllable;
 use strict;
 use warnings;
 use utf8;
@@ -17,32 +17,29 @@ our @VOWELS = qw( a e i o u y æ ø å );
 
 =head1 NAME
 
-Lingua::NO::Syllable - Count the number of syllables in Norwegian words.
+Lingua::DE::Syllable - Count the number of syllables in German words.
 
 =head1 VERSION
 
-Version 0.06.
+Version 0.01.
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-    use Lingua::NO::Syllable;
+    use Lingua::DE::Syllable;
 
     my $count = syllables( 'Tyrannosaurus' ); # 5, because:
                                               # Tyr-ann-o-sau-rus
 
 =head1 DESCRIPTION
 
-C<Lingua::NO::Syllable::syllables($word)> estimates the number of syllables in
+C<Lingua::DE::Syllable::syllables($word)> estimates the number of syllables in
 the C<$word> passed to it. It's an estimate, because the algorithm is quick
 and dirty, non-alpha characters aren't considered etc. Don't expect this
 module to give you a 100% correct answer.
-
-As the Norwegian and the Danish languages are quite similar, at least written,
-this module might work for the Danish language as well.
 
 =cut
 
@@ -106,21 +103,23 @@ before the number of syllables are counted.
 
 =item * L<Lingua::EN::Syllable>
 
+=item * L<Lingua::NO::Syllable>
+
 =back
 
 =head1 AUTHOR
 
-Tore Aursand, C<< <toreau at gmail.com> >>
+Helmut Wollmersdorfer, C<< <helmut.wollmersdorfer at gmail.com> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to the web interface at L<https://rt.cpan.org/Dist/Display.html?Name=Lingua-NO-Syllable>
+Please report any bugs or feature requests to the web interface at L<https://rt.cpan.org/Dist/Display.html?Name=Lingua-DE-Syllable>
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc Lingua::NO::Syllable
+    perldoc Lingua::DE::Syllable
 
 You can also look for information at:
 
@@ -128,21 +127,21 @@ You can also look for information at:
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/Lingua-NO-Syllable>
+L<http://annocpan.org/dist/Lingua-DE-Syllable>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/Lingua-NO-Syllable>
+L<http://cpanratings.perl.org/d/Lingua-DE-Syllable>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Lingua-NO-Syllable/>
+L<http://search.cpan.org/dist/Lingua-DE-Syllable/>
 
 =back
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2015-2016 Tore Aursand.
+Copyright 2024 Helmut Wollmersdorfer.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the the Artistic License (2.0). You may obtain a
