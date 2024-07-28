@@ -12,6 +12,10 @@ our @ISA    = qw/ Exporter /;
 our @EXPORT = qw/ syllable syllables /;
 
 our @VOWELS = qw( a e i o u y ä ö ü é è ë ï );
+our $vowel_pattern = '(' . join('|', @VOWELS) . ')';
+
+our @vowel_pairs = qw(aa ai au ay ee ei eu ey ie ui äu );
+our $pair_pattern = '(' . join('|', @vowel_pairs) . ')';
 
 =encoding utf-8
 
@@ -50,43 +54,22 @@ sub syllable {
 sub syllables {
     my $word = shift // '';
 
-    # Remove surrounding spaces.
     $word =~ s/^\s+//;
     $word =~ s/\s+$//;
 
-    # If the word is one character long, consider it to contain only one
-    # syllable.
     return 1 if ( length($word) == 1 );
 
-    # Lowercase the word.
     $word = lc( $word );
-
-    # Normalize the word, i.e. convert accented characters to their normalized
-    # representation.
     $word = NFD( $word );
 
-    # Create an array of the word's characters.
-    my @chars = split( //, $word );
+    # The number of syllables in a word equals the number of vowels.
+    my @vowels    = $word =~ m/$vowel_pattern/g;
+    my $syllables = scalar(@vowels);
 
-    # The basic rule is that the number of syllables in a word equals the
-    # number of vowels.
-    my $syllables = 0;
+    # Certain vowel combinations don't classify as "syllable separators".
+    my @pairs   = $word =~ m/$pair_pattern/g;
+    $syllables -= scalar(@pairs);
 
-    foreach my $vowel ( @VOWELS ) {
-        foreach my $char ( @chars ) {
-            if ( $vowel eq $char ) {
-                $syllables++;
-            }
-        }
-    }
-
-    # Certain vowel combinations doesn't classify as "syllable separator".
-    foreach ( qw(aa ai au ay ee ei eu ey ie ui äu ) ) {
-        my $occurences = $word =~ m/$_/g;
-        $syllables -= $occurences;
-    }
-
-    # Return
     return $syllables;
 }
 
